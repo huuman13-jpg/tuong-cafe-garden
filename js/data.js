@@ -14,10 +14,20 @@ var CATEGORY_BADGE_COLORS = { 'phong-thuy': 'bg-forest text-white', 'de-ban': 'b
 var CATEGORY_BADGE_TEXT = { 'phong-thuy': 'Phong thủy', 'de-ban': 'Để bàn', 'sen-da': 'Sen đá', 'dai-sanh': 'Đại sảnh' };
 
 function loadPlants(callback) {
-  if (typeof callback === 'undefined') {
-    return DEFAULT_PLANTS.slice();
+  var data = null;
+  try {
+    var saved = localStorage.getItem('tuongCafePlants');
+    if (saved) { data = JSON.parse(saved); }
+  } catch(e) {}
+
+  if (!data || !Array.isArray(data) || data.length === 0) {
+    data = JSON.parse(JSON.stringify(DEFAULT_PLANTS));
   }
-  callback(DEFAULT_PLANTS.slice());
+
+  if (typeof callback === 'undefined') {
+    return data;
+  }
+  callback(data);
 }
 
 function savePlants(arr) {
