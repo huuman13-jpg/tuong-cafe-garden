@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin – TUONG CAFE & GARDEN</title>
+
+  <!-- CDN bên ngoài -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: '#1B5E20',
+            'forest-dark': '#134218',
+            'forest-light': '#2E7D32',
+            lime: '#8BC34A',
+            moss: '#7CB342',
+            cream: '#FEFDF1',
+            sand: '#FFF3E0',
+            terra: '#8D6E63',
+            'terra-light': '#A1887F',
+          },
+          fontFamily: { inter: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <!-- CSS riêng -->
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- ======================================================== -->
+  <!-- ==================== TRANG ĐĂNG NHẬP ==================== -->
+  <!-- ======================================================== -->
+  <div id="loginPage" class="login-bg min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md p-8 md:p-10">
+      <div class="flex items-center justify-center gap-3 mb-8">
+        <div class="w-14 h-14 bg-forest rounded-2xl flex items-center justify-center">
+          <i data-lucide="leaf" class="w-8 h-8 text-lime"></i>
+        </div>
+        <div class="text-center">
+          <div class="text-lg font-bold text-forest leading-tight">TUONG CAFE</div>
+          <div class="text-xs text-terra tracking-widest uppercase">Admin Panel</div>
+        </div>
+      </div>
+
+      <h2 class="text-xl font-semibold text-forest text-center mb-2">Đăng nhập quản trị</h2>
+      <p class="text-sm text-terra-light text-center mb-8">Nhập thông tin tài khoản chủ cửa hàng</p>
+
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-forest mb-1.5">Tên đăng nhập</label>
+          <div class="relative">
+            <i data-lucide="user" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-terra-light"></i>
+            <input type="text" id="loginUser" value="tuongadmin"
+              class="w-full pl-11 pr-4 py-3 bg-cream border border-forest/10 rounded-xl text-sm text-forest focus:outline-none focus:ring-2 focus:ring-lime/50 focus:border-lime transition-all"
+              placeholder="Nhập tên đăng nhập" required>
+          </div>
+        </div>
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-forest mb-1.5">Mật khẩu</label>
+          <div class="relative">
+            <i data-lucide="lock" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-terra-light"></i>
+            <input type="password" id="loginPass" value="admin123"
+              class="w-full pl-11 pr-11 py-3 bg-cream border border-forest/10 rounded-xl text-sm text-forest focus:outline-none focus:ring-2 focus:ring-lime/50 focus:border-lime transition-all"
+              placeholder="Nhập mật khẩu" required>
+            <button type="button" onclick="togglePassVisibility()" class="absolute right-3.5 top-1/2 -translate-y-1/2">
+              <i data-lucide="eye-off" class="w-4 h-4 text-terra-light hover:text-forest transition-colors" id="passToggleIcon"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="loginError" class="hidden mb-4 p-3 bg-red-50 border border-red-200 rounded-xl text-sm text-red-600 flex items-center gap-2">
+          <i data-lucide="alert-circle" class="w-4 h-4 flex-shrink-0"></i>
+          <span>Sai tên đăng nhập hoặc mật khẩu</span>
+        </div>
+
+        <button type="submit"
+          class="w-full bg-forest text-white py-3.5 rounded-xl font-medium hover:bg-forest-dark transition-colors duration-300 shadow-lg shadow-forest/20 flex items-center justify-center gap-2">
+          <i data-lucide="log-in" class="w-5 h-5"></i>
+          Đăng nhập
+        </button>
+      </form>
+
+      <p class="text-xs text-terra-light text-center mt-6">Đường dẫn bảo mật: tuongcafe.com/admin-login</p>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- ==================== ADMIN DASHBOARD ==================== -->
+  <!-- ======================================================== -->
+  <div id="adminDashboard" class="hidden min-h-screen">
+
+    <!-- Overlay (mobile) -->
+    <div id="sidebarOverlay" class="sidebar-overlay fixed inset-0 z-40 hidden lg:hidden" onclick="toggleSidebar()"></div>
+
+    <!-- ========== SIDEBAR ========== -->
+    <aside id="sidebar" class="sidebar fixed top-0 left-0 bottom-0 w-64 bg-white border-r border-forest/5 z-50 -translate-x-full lg:translate-x-0 flex flex-col">
+      <div class="p-5 border-b border-forest/5">
+        <a href="#" class="flex items-center gap-2.5">
+          <div class="w-10 h-10 bg-forest rounded-xl flex items-center justify-center">
+            <i data-lucide="leaf" class="w-5 h-5 text-lime"></i>
+          </div>
+          <div>
+            <div class="text-sm font-bold text-forest leading-tight">TUONG CAFE</div>
+            <div class="text-[10px] text-terra tracking-wider uppercase">Quản trị</div>
+          </div>
+        </a>
+      </div>
+
+      <nav class="flex-1 p-4 space-y-1 overflow-y-auto">
+        <button onclick="showPage('dashboard')" class="nav-item active w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-forest" data-page="dashboard">
+          <i data-lucide="layout-dashboard" class="w-5 h-5 text-forest/60"></i>
+          <span>Tổng quan</span>
+        </button>
+        <button onclick="showPage('plants')" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-forest" data-page="plants">
+          <i data-lucide="flower-2" class="w-5 h-5 text-forest/60"></i>
+          <span>Quản lý cây cảnh</span>
+          <span class="ml-auto bg-forest text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center" id="plantCount">8</span>
+        </button>
+        <button onclick="showPage('addPlant')" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-forest" data-page="addPlant">
+          <i data-lucide="plus-circle" class="w-5 h-5 text-forest/60"></i>
+          <span>Thêm cây mới</span>
+        </button>
+        <button onclick="showPage('images')" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-forest" data-page="images">
+          <i data-lucide="image" class="w-5 h-5 text-forest/60"></i>
+          <span>Thư viện ảnh</span>
+        </button>
+
+        <div class="pt-4 mt-4 border-t border-forest/5">
+          <div class="px-4 py-2 text-[10px] font-semibold text-terra-light tracking-widest uppercase">Hệ thống</div>
+          <button onclick="showPage('settings')" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-forest" data-page="settings">
+            <i data-lucide="settings" class="w-5 h-5 text-forest/60"></i>
+            <span>Cài đặt</span>
+          </button>
+        </div>
+      </nav>
+
+      <div class="p-4 border-b border-forest/5">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 bg-lime/20 rounded-full flex items-center justify-center">
+            <i data-lucide="user" class="w-4 h-4 text-forest"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-forest truncate">Anh Tường</div>
+            <div class="text-xs text-terra-light">Chủ cửa hàng</div>
+          </div>
+          <button onclick="handleLogout()" class="p-1.5 hover:bg-forest/5 rounded-lg transition-colors" title="Đăng xuất">
+            <i data-lucide="log-out" class="w-4 h-4 text-terra-light hover:text-red-500 transition-colors"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <div class="lg:ml-64 min-h-screen">
+
+      <!-- Top Bar -->
+      <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-forest/5">
+        <div class="flex items-center justify-between px-4 md:px-6 h-16">
+          <div class="flex items-center gap-3">
+            <button onclick="toggleSidebar()" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-forest/5 transition-colors">
+              <i data-lucide="menu" class="w-5 h-5 text-forest"></i>
+            </button>
+            <h1 class="text-base md:text-lg font-semibold text-forest" id="pageTitle">Tổng quan</h1>
+          </div>
+          <div class="flex items-center gap-2">
+            <button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-forest/5 transition-colors relative">
+              <i data-lucide="bell" class="w-5 h-5 text-forest/60"></i>
+              <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></span>
+            </button>
+            <a href="#" onclick="handleLogout(); return false;" class="hidden sm:flex items-center gap-2 text-xs font-medium text-terra hover:text-red-500 px-3 py-2 rounded-lg hover:bg-red-50 transition-all">
+              <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+              Thoát
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- ========== PAGE CONTENT ========== -->
+      <div class="p-4 md:p-6 lg:p-8">
+
+        <!-- ===== TRANG TỔNG QUAN ===== -->
+        <div id="page-dashboard" class="page active">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white rounded-2xl p-5 border border-forest/5">
+              <div class="flex items-center justify-between mb-3">
+                <div class="w-10 h-10 bg-forest/5 rounded-xl flex items-center justify-center">
+                  <i data-lucide="flower-2" class="w-5 h-5 text-forest"></i>
+                </div>
+                <span class="text-xs font-medium text-moss bg-moss/10 px-2 py-0.5 rounded-full" id="statTotalBadge">+3</span>
+              </div>
+              <div class="text-2xl font-bold text-forest" id="statTotal">8</div>
+              <div class="text-xs text-terra-light mt-0.5">Tổng số cây</div>
+            </div>
+            <div class="bg-white rounded-2xl p-5 border border-forest/5">
+              <div class="flex items-center justify-between mb-3">
+                <div class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center">
+                  <i data-lucide="check-circle" class="w-5 h-5 text-green-600"></i>
+                </div>
+              </div>
+              <div class="text-2xl font-bold text-forest" id="statInStock">6</div>
+              <div class="text-xs text-terra-light mt-0.5">Đang hiển thị</div>
+            </div>
+            <div class="bg-white rounded-2xl p-5 border border-forest/5">
+              <div class="flex items-center justify-between mb-3">
+                <div class="w-10 h-10 bg-yellow-50 rounded-xl flex items-center justify-center">
+                  <i data-lucide="alert-triangle" class="w-5 h-5 text-yellow-600"></i>
+                </div>
+              </div>
+              <div class="text-2xl font-bold text-forest" id="statOutStock">1</div>
+              <div class="text-xs text-terra-light mt-0.5">Hết hàng</div>
+            </div>
+            <div class="bg-white rounded-2xl p-5 border border-forest/5">
+              <div class="flex items-center justify-between mb-3">
+                <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center">
+                  <i data-lucide="eye-off" class="w-5 h-5 text-gray-400"></i>
+                </div>
+              </div>
+              <div class="text-2xl font-bold text-forest" id="statHidden">1</div>
+              <div class="text-xs text-terra-light mt-0.5">Đã ẩn</div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 bg-white rounded-2xl border border-forest/5 overflow-hidden">
+              <div class="px-6 py-4 border-b border-forest/5 flex items-center justify-between">
+                <h3 class="text-sm font-semibold text-forest">Cây mới thêm gần đây</h3>
+                <button onclick="showPage('plants')" class="text-xs font-medium text-moss hover:text-forest transition-colors">Xem tất cả →</button>
+              </div>
+              <div class="divide-y divide-forest/5" id="recentPlantsList"></div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-forest/5 p-6">
+              <h3 class="text-sm font-semibold text-forest mb-4">Thao tác nhanh</h3>
+              <div class="space-y-3">
+                <button onclick="showPage('addPlant')" class="w-full flex items-center gap-3 p-3.5 bg-forest/5 rounded-xl hover:bg-forest/10 transition-colors text-left">
+                  <div class="w-9 h-9 bg-forest rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="plus" class="w-4 h-4 text-white"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium text-forest">Thêm cây mới</div>
+                    <div class="text-xs text-terra-light">Đăng cây cảnh lên website</div>
+                  </div>
+                </button>
+                <button onclick="showPage('images')" class="w-full flex items-center gap-3 p-3.5 bg-forest/5 rounded-xl hover:bg-forest/10 transition-colors text-left">
+                  <div class="w-9 h-9 bg-moss rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="upload" class="w-4 h-4 text-white"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium text-forest">Upload ảnh</div>
+                    <div class="text-xs text-terra-light">Tải ảnh lên thư viện</div>
+                  </div>
+                </button>
+                <button onclick="showPage('plants')" class="w-full flex items-center gap-3 p-3.5 bg-forest/5 rounded-xl hover:bg-forest/10 transition-colors text-left">
+                  <div class="w-9 h-9 bg-terra rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="toggle-right" class="w-4 h-4 text-white"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium text-forest">Quản lý kho</div>
+                    <div class="text-xs text-terra-light">Bật/tắt hiển thị cây</div>
+                  </div>
+                </button>
+                <a href="#" target="_blank" class="w-full flex items-center gap-3 p-3.5 bg-forest/5 rounded-xl hover:bg-forest/10 transition-colors text-left">
+                  <div class="w-9 h-9 bg-lime rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="external-link" class="w-4 h-4 text-forest-dark"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium text-forest">Xem website</div>
+                    <div class="text-xs text-terra-light">Mở trang chủ bên ngoài</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== TRANG QUẢN LÝ CÂY CẢNH ===== -->
+        <div id="page-plants" class="page">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+            <div class="relative w-full sm:w-80">
+              <i data-lucide="search" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-terra-light"></i>
+              <input type="text" id="searchPlant" oninput="filterPlants()" placeholder="Tìm tên cây..."
+                class="w-full pl-10 pr-4 py-2.5 bg-white border border-forest/10 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-lime/50 focus:border-lime transition-all">
+            </div>
+            <div class="flex items-center gap-3">
+              <select id="filterStatus" onchange="filterPlants()"
+                class="bg-white border border-forest/10 rounded-xl px-4 py-2.5 text-sm text-forest focus:outline-none focus:ring-2 focus:ring-lime/50">
+                <option value="all">Tất cả trạng thái</option>
+                <option value="còn-hàng">Còn hàng</option>
+                <option value="hết-hàng">Hết hàng</option>
+                <option value="ẩn">Đã ẩn</option>
+              </select>
+              <button onclick="showPage('addPlant')"
+                class="flex items-center gap-2 bg-forest text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-forest-dark transition-colors shadow-lg shadow-forest/20">
+                <i data-lucide="plus" class="w-4 h-4"></i>
+                <span class="hidden sm:inline">Thêm cây</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-forest/5 overflow-hidden">
+            <!-- Desktop Table -->
+            <div class="hidden md:block overflow-x-auto">
+              <table class="w-full">
+                <thead>
+                  <tr class="border-b border-forest/5">
+                    <th class="text-left px-6 py-3.5 text-xs font-semibold text-terra-light tracking-wider uppercase">Ảnh</th>
+                    <th class="text-left px-6 py-3.5 text-xs font-semibold text-terra-light tracking-wider uppercase">Tên cây</th>
+                    <th class="text-left px-6 py-3.5 text-xs font-semibold text-terra-light tracking-wider uppercase">Danh mục</th>
+                    <th class="text-left px-6 py-3.5 text-xs font-semibold text-terra-light tracking-wider uppercase">Giá</th>
+                    <th class="text-left px-6 py-3.5 text-xs font-semibold text-terra-light tracking-wider uppercase">Trạng thái</th>
+                    <th class="text-center px-6 py-3.5 text-xs font-semibold text-terra-light tracking-wider uppercase">Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody id="plantsTableBody"></tbody>
+              </table>
+            </div>
+            <!-- Mobile Cards -->
+            <div class="md:hidden divide-y divide-forest/5" id="plantsMobileList"></div>
+          </div>
+          <p class="text-xs text-terra-light mt-4 text-center">💡 Nhấp đúp vào <strong>Tên cây</strong> hoặc <strong>Giá</strong> để chỉnh sửa nhanh</p>
+        </div>
+
+        <!-- ===== TRANG THÊM/SỬA CÂY ===== -->
+        <div id="page-addPlant" class="page">
+          <form id="plantForm" onsubmit="handleSavePlant(event)">
+            <input type="hidden" id="editPlantId" value="">
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <!-- Cột trái: Ảnh -->
+              <div class="lg:col-span-1">
+                <div class="bg-white rounded-2xl border border-forest/5 p-6 sticky top-24">
+                  <h3 class="text-sm font-semibold text-forest mb-4 flex items-center gap-2">
+                    <i data-lucide="image" class="w-4 h-4 text-moss"></i>
+                    Hình ảnh cây
+                  </h3>
+
+                  <div id="uploadZone" class="upload-zone p-6 text-center mb-4 cursor-pointer"
+                    onclick="document.getElementById('fileInput').click()">
+                    <input type="file" id="fileInput" multiple accept="image/*" capture="environment"
+                      class="hidden" onchange="handleFileUpload(event)">
+                    <div class="w-14 h-14 bg-lime/10 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                      <i data-lucide="camera" class="w-7 h-7 text-moss"></i>
+                    </div>
+                    <p class="text-sm font-medium text-forest mb-1">Chụp hoặc chọn ảnh</p>
+                    <p class="text-xs text-terra-light">JPG, PNG • Tự động nén WebP</p>
+                    <p class="text-xs text-moss mt-2 font-medium">🚀 Chạm để chụp từ camera</p>
+                  </div>
+
+                  <div id="imageList" class="space-y-2 mb-4"></div>
+                  <div id="imageCount" class="text-xs text-terra-light text-center hidden">
+                    0 ảnh • Kéo thả để sắp xếp thứ tự
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cột phải: Form -->
+              <div class="lg:col-span-2 space-y-6">
+                <!-- Thông tin cơ bản -->
+                <div class="bg-white rounded-2xl border border-forest/5 p-6">
+                  <h3 class="text-sm font-semibold text-forest mb-5 flex items-center gap-2">
+                    <i data-lucide="info" class="w-4 h-4 text-moss"></i>
+                    Thông tin cơ bản
+                  </h3>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="sm:col-span-2">
+                      <label class="block text-sm font-medium text-forest mb-1.5">Tên cây cảnh <span class="text-red-400">*</span></label>
+                      <input type="text" id="plantName" required
+                        class="w-full px-4 py-2.5 bg-cream border border-forest/10 rounded-xl text-sm text-forest focus:outline-none focus:ring-2 focus:ring-lime/50 focus:border-lime transition-all"
+                        placeholder="Ví dụ: Cây Kim Tiền">
+                    </div>
+                    <div>
+                      <label class="block text-sm font-medium text-forest mb-1.5">Danh mục <span class="text-red-400">*</span></label>
+                      <select id="plantCategory" required
+                        class="w-full px-4 py-2.5 bg-cream border border-forest/10 rounded-xl text-sm text-forest focus:outline-none focus:ring-2 focus:ring-lime/50 focus:border-lime transition-all">
+                        <option value="">— Chọn danh mục —</option>
+                        <option value="phong-thuy">Cây phong thủy</option>
+                        <option value="de-ban">Cây để bàn</option>
+                        <option value="sen-da">Sen đá / Xương rồng</option>
+                        <option value="dai-sanh">Cây đại sảnh</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="block text-sm font-medium text-forest mb-1.5">Giá tiền</label>
+                      <div class="flex gap-3">
+                        <input type="number" id="plantPrice"
+                          class="flex-1 px-4 py-2.5 bg-cream border border-forest/10 rounded-xl text-sm text-forest focus:outline-none focus:ring-2 focus:ring-lime/50 focus:border-lime transition-all"
+                          placeholder="0">
+                        <label class="flex items-center gap-2 px-4 py-2.5 bg-cream border border-forest/10 rounded-xl cursor-pointer hover:border-lime transition-colors flex-shrink-0">
+                          <input type="checkbox" id="plantContactPrice" class="accent-forest w-4 h-4" onchange="togglePriceInput()">
+                          <span class="text-xs font-medium text-forest whitespace-nowrap">Liên hệ</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Đặc tính -->
+                <div class="bg-white rounded-2xl border border-forest/5 p-6">
+                  <h3 class="text-sm font-semibold text-forest mb-5 flex items-center gap-2">
+                    <i data-lucide="sun" class="w-4 h-4 text-moss"></i>
+                    Đặc tính & Cách chăm sóc
+                  </h3>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                    <div>
+                      <label class="block text-sm font-medium text-forest mb-1.5">Ánh sáng</label>
+                      <input type="text" id="plantLight"
+                        class="w-full px-4 py-2.5 bg-cream border border-forest/10 rounded-xl text-sm text-forest focus:outline-none focus:ring-2 focus:ring-lime/50 focus:border-lime transition-all"
+                        placeholder="Ví dụ: Ưa bóng râm">
+                    </div>
+                    <div>
+                      <label class="block text-sm font-medium text-forest mb-1.5">Tưới nước</label>
+                      <input type="text" id="plantWater"
+                        class="w-full px-4 py-2.5 bg-cream border border-forest/10 rounded-xl text-sm text-forest focus:outline-none focus:ring-2 focus:ring-lime/50 focus:border-lime transition-all"
+                        placeholder="Ví dụ: 7 ngày/tuần">
+                    </div>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-forest mb-1.5">Mô tả chi tiết</label>
+                    <div class="border border-forest/10 rounded-xl overflow-hidden bg-white">
+                      <div class="editor-toolbar flex items-center gap-1 px-3 py-2 bg-cream border-b border-forest/5 flex-wrap">
+                        <button type="button" onclick="execCmd('bold')" class="editor-btn" title="Đậm">B</button>
+                        <button type="button" onclick="execCmd('italic')" class="editor-btn" title="Nghiêng">I</button>
+                        <button type="button" onclick="execCmd('underline')" class="editor-btn" title="Gạch chân">U</button>
+                        <div class="editor-sep"></div>
+                        <button type="button" onclick="execCmd('insertUnorderedList')" class="editor-btn" title="Gạch đầu dòng">
+                          <i data-lucide="list" class="w-4 h-4 text-forest"></i>
+                        </button>
+                        <button type="button" onclick="execCmd('insertOrderedList')" class="editor-btn" title="Số thứ tự">
+                          <i data-lucide="list-ordered" class="w-4 h-4 text-forest"></i>
+                        </button>
+                        <div class="editor-sep"></div>
+                        <input type="color" id="textColor" value="#1B5E20" onchange="execCmdVal('foreColor', this.value)" class="editor-color" title="Màu chữ">
+                        <input type="color" id="bgColor" value="#FEFDF1" onchange="execCmdVal('hiliteColor', this.value)" class="editor-color" title="Màu nền">
+                      </div>
+                      <div id="plantDescription" class="editor-content p-4 text-sm text-forest" contenteditable="true" data-placeholder="Mô tả chi tiết về cây, cách chăm sóc, kích thước..."></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Phong thủy -->
+                <div class="bg-white rounded-2xl border border-forest/5 p-6">
+                  <h3 class="text-sm font-semibold text-forest mb-5 flex items-center gap-2">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-moss"></i>
+                    Phong thủy & Vị trí
+                  </h3>
+                  <div class="space-y-4">
+                    <div>
+                      <label class="block text-sm font-medium text-forest mb-1.5">Ý nghĩa phong thủy</label>
+                      <input type="text" id="plantFengShui"
+                        class="w-full px-4 py-2.5 bg-cream border border-forest/10 rounded-xl text-sm text-forest focus:outline-none focus:ring-2 focus:ring-lime/50 focus:border-lime transition-all"
+                        placeholder="Ví dụ: Tài lộc, phú quý, sinh khí">
+                    </div>
+                    <div>
+                      <label class="block text-sm font-medium text-forest mb-1.5">Vị trí đặt phù hợp</label>
+                      <input type="text" id="plantPosition"
+                        class="w-full px-4 py-2.5 bg-cream border border-forest/10 rounded-xl text-sm text-forest focus:outline-none focus:ring-2 focus:ring-lime/50 focus:border-lime transition-all"
+                        placeholder="Ví dụ: Phòng khách, quầy lễ tân">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Trạng thái -->
+                <div class="bg-white rounded-2xl border border-forest/5 p-6">
+                  <h3 class="text-sm font-semibold text-forest mb-5 flex items-center gap-2">
+                    <i data-lucide="toggle-right" class="w-4 h-4 text-moss"></i>
+                    Trạng thái hiển thị
+                  </h3>
+                  <div class="flex flex-wrap gap-3">
+                    <label class="status-radio-label">
+                      <input type="radio" name="plantStatus" value="còn-hàng" checked class="accent-forest w-4 h-4">
+                      <span>🟢 Còn hàng</span>
+                    </label>
+                    <label class="status-radio-label status-radio--yellow">
+                      <input type="radio" name="plantStatus" value="hết-hàng" class="accent-yellow-500 w-4 h-4">
+                      <span>🟡 Hết hàng</span>
+                    </label>
+                    <label class="status-radio-label status-radio--gray">
+                      <input type="radio" name="plantStatus" value="ẩn" class="accent-gray-400 w-4 h-4">
+                      <span>⚫ Ẩn sản phẩm</span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Nút lưu -->
+                <div class="flex flex-col sm:flex-row gap-3">
+                  <button type="submit"
+                    class="flex-1 flex items-center justify-center gap-2 bg-forest text-white py-3.5 rounded-xl font-medium hover:bg-forest-dark transition-colors shadow-lg shadow-forest/20">
+                    <i data-lucide="save" class="w-5 h-5"></i>
+                    <span id="submitBtnText">Lưu cây mới</span>
+                  </button>
+                  <button type="button" onclick="resetForm()"
+                    class="flex items-center justify-center gap-2 bg-white text-forest py-3.5 px-6 rounded-xl font-medium border border-forest/10 hover:bg-forest/5 transition-colors">
+                    <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                    Làm lại
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- ===== TRANG THƯ VIỆN ẢNH ===== -->
+        <div id="page-images" class="page">
+          <div class="bg-white rounded-2xl border border-forest/5 p-6 mb-6">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div>
+                <h3 class="text-sm font-semibold text-forest">Tải ảnh lên thư viện</h3>
+                <p class="text-xs text-terra-light mt-0.5">Ảnh tự động nén WebP, dung lượng tối ưu</p>
+              </div>
+              <button onclick="document.getElementById('libraryFileInput').click()"
+                class="flex items-center gap-2 bg-forest text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-forest-dark transition-colors">
+                <i data-lucide="upload" class="w-4 h-4"></i>
+                Chọn ảnh
+              </button>
+              <input type="file" id="libraryFileInput" multiple accept="image/*" class="hidden" onchange="handleLibraryUpload(event)">
+            </div>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3" id="imageLibrary"></div>
+          <div id="emptyLibrary" class="hidden text-center py-20">
+            <i data-lucide="image-off" class="w-16 h-16 text-terra-light/30 mx-auto mb-4"></i>
+            <p class="text-sm text-terra-light">Chưa có ảnh trong thư viện</p>
+          </div>
+        </div>
+
+        <!-- ===== TRANG CÀI ĐẶT ===== -->
+        <div id="page-settings" class="page">
+          <div class="max-w-2xl space-y-6">
+            <div class="bg-white rounded-2xl border border-forest/5 p-6">
+              <h3 class="text-sm font-semibold text-forest mb-5 flex items-center gap-2">
+                <i data-lucide="store" class="w-4 h-4 text-moss"></i>
+                Thông tin cửa hàng
+              </h3>
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-forest mb-1.5">Tên cửa hàng</label>
+                  <input type="text" value="TUONG CAFE & GARDEN" class="setting-input">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-forest mb-1.5">Địa chỉ</label>
+                  <input type="text" value="123 Đường Số X, Phường Y, Quận Z, TP. HCM" class="setting-input">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-forest mb-1.5">Số điện thoại / Zalo</label>
+                  <input type="text" value="0901 234 567" class="setting-input">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-forest mb-1.5">Fanpage Facebook</label>
+                  <input type="text" value="fb.com/tuongcafeandgarden" class="setting-input">
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-forest/5 p-6">
+              <h3 class="text-sm font-semibold text-forest mb-5 flex items-center gap-2">
+                <i data-lucide="lock" class="w-4 h-4 text-moss"></i>
+                Đổi mật khẩu
+              </h3>
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-forest mb-1.5">Mật khẩu hiện tại</label>
+                  <input type="password" class="setting-input">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-forest mb-1.5">Mật khẩu mới</label>
+                  <input type="password" class="setting-input">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-forest mb-1.5">Xác nhận mật khẩu mới</label>
+                  <input type="password" class="setting-input">
+                </div>
+              </div>
+              <button onclick="showToast('Đã cập nhật mật khẩu thành công!', 'success')"
+                class="mt-5 flex items-center gap-2 bg-forest text-white px-6 py-2.5 rounded-xl text-sm font-medium hover:bg-forest-dark transition-colors">
+                <i data-lucide="save" class="w-4 h-4"></i>
+                Cập nhật mật khẩu
+              </button>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-forest/5 p-6">
+              <h3 class="text-sm font-semibold text-forest mb-5 flex items-center gap-2">
+                <i data-lucide="zap" class="w-4 h-4 text-moss"></i>
+                Tối ưu hóa
+              </h3>
+              <div class="space-y-4">
+                <div class="flex items-center justify-between p-3 bg-cream rounded-xl">
+                  <div>
+                    <div class="text-sm font-medium text-forest">Tự động nén WebP</div>
+                    <div class="text-xs text-terra-light">Ảnh upload tự chuyển WebP, giảm 60-80% dung lượng</div>
+                  </div>
+                  <div class="toggle-switch active" onclick="this.classList.toggle('active')"></div>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-cream rounded-xl">
+                  <div>
+                    <div class="text-sm font-medium text-forest">Lazy Loading ảnh</div>
+                    <div class="text-xs text-terra-light">Chỉ tải ảnh khi khách cuộn đến vị trí</div>
+                  </div>
+                  <div class="toggle-switch active" onclick="this.classList.toggle('active')"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /page-content -->
+    </div><!-- /main-content -->
+  </div><!-- /admin-dashboard -->
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="fixed top-4 right-4 z-[200] space-y-2"></div>
+
+  <!-- ===== JS FILES (thứ tự load quan trọng) ===== -->
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/sidebar.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/editor.js"></script>
+  <script src="js/images.js"></script>
+  <script src="js/plants.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

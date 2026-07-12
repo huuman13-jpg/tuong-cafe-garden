@@ -1,0 +1,167 @@
+/* ===========================================================
+   STYLE.CSS – TUONG CAFE & GARDEN (Trang chủ khách hàng)
+   =========================================================== */
+
+/* ---------- Base ---------- */
+* {
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FEFDF1;
+}
+
+/* ---------- Leaf pattern overlay ---------- */
+.leaf-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c0 0-15 10-15 25s15 25 15 25' stroke='%231B5E20' stroke-width='0.3' fill='none' opacity='0.06'/%3E%3Cpath d='M30 5c0 0 15 10 15 25s-15 25-15 25' stroke='%231B5E20' stroke-width='0.3' fill='none' opacity='0.06'/%3E%3Cpath d='M30 15c0 0-8 6-8 15s8 15 8 15' stroke='%238BC34A' stroke-width='0.2' fill='none' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FEFDF1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8BC34A;
+  border-radius: 3px;
+}
+
+/* ---------- Hero parallax ---------- */
+.hero-bg {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 768px) {
+  .hero-bg {
+    background-attachment: scroll;
+  }
+}
+
+/* ---------- Fade in animation ---------- */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Timeline connector ---------- */
+.timeline-line {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 4rem);
+  height: 3px;
+  background: linear-gradient(to right, #1B5E20, #8BC34A);
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  .timeline-line {
+    top: 0;
+    bottom: 0;
+    left: 1.5rem;
+    width: 3px;
+    height: 100%;
+    transform: none;
+  }
+}
+
+/* ---------- Filter active state ---------- */
+.filter-btn.active {
+  background-color: #1B5E20;
+  color: white;
+  border-color: #1B5E20;
+}
+
+/* ---------- Lightbox ---------- */
+.lightbox-overlay {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---------- Plant card hover ---------- */
+.plant-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.plant-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(27, 94, 32, 0.12);
+}
+
+/* ---------- Feature card hover ---------- */
+.feature-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(27, 94, 32, 0.1);
+  border-color: #8BC34A;
+}
+
+/* ---------- Floating buttons pulse ---------- */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+.float-btn::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: inherit;
+  animation: pulse-ring 2s infinite;
+  z-index: -1;
+}
+
+/* ---------- Nav active link ---------- */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #8BC34A;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ---------- Organic blob shapes ---------- */
+.blob-shape {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}

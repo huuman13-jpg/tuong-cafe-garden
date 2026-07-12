@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TUONG CAFE & GARDEN – Nơi Cây Cảnh & Cafe Hòa Quyện</title>
+
+  <!-- CDN bên ngoài -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: '#1B5E20',
+            'forest-dark': '#134218',
+            'forest-light': '#2E7D32',
+            lime: '#8BC34A',
+            moss: '#7CB342',
+            cream: '#FEFDF1',
+            sand: '#FFF3E0',
+            terra: '#8D6E63',
+            'terra-light': '#A1887F',
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- CSS riêng -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="leaf-pattern">
+
+  <!-- ========== HEADER ========== -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <a href="#" class="flex items-center gap-2 group">
+          <div class="w-10 h-10 md:w-12 md:h-12 bg-forest rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+            <i data-lucide="leaf" class="w-6 h-6 md:w-7 md:h-7 text-lime"></i>
+          </div>
+          <div class="leading-tight">
+            <span class="block text-sm md:text-base font-semibold text-forest tracking-tight">TUONG CAFE</span>
+            <span class="block text-[10px] md:text-xs text-terra tracking-widest uppercase">& Garden</span>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8">
+          <a href="#hero" class="nav-link text-sm font-medium text-forest hover:text-forest-light transition-colors">Trang chủ</a>
+          <a href="#catalog" class="nav-link text-sm font-medium text-forest hover:text-forest-light transition-colors">Cây Cảnh</a>
+          <a href="#decor" class="nav-link text-sm font-medium text-forest hover:text-forest-light transition-colors">Decor Quán Cafe</a>
+          <a href="#services" class="nav-link text-sm font-medium text-forest hover:text-forest-light transition-colors">Dịch vụ Thi công</a>
+          <a href="#contact" class="nav-link text-sm font-medium text-forest hover:text-forest-light transition-colors">Liên hệ</a>
+        </nav>
+
+        <div class="hidden lg:block">
+          <a href="https://zalo.me" target="_blank" class="inline-flex items-center gap-2 bg-forest text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-forest-dark transition-colors duration-300 shadow-lg shadow-forest/20">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            Tư vấn ngay
+          </a>
+        </div>
+
+        <button id="menuToggle" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-forest/5 transition-colors">
+          <i data-lucide="menu" class="w-6 h-6 text-forest" id="menuIcon"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="lg:hidden hidden bg-cream/98 backdrop-blur-md border-t border-forest/10">
+      <div class="max-w-7xl mx-auto px-4 py-6 space-y-1">
+        <a href="#hero" class="mobile-link block px-4 py-3 text-forest font-medium rounded-xl hover:bg-forest/5 transition-colors">Trang chủ</a>
+        <a href="#catalog" class="mobile-link block px-4 py-3 text-forest font-medium rounded-xl hover:bg-forest/5 transition-colors">Cây Cảnh</a>
+        <a href="#decor" class="mobile-link block px-4 py-3 text-forest font-medium rounded-xl hover:bg-forest/5 transition-colors">Decor Quán Cafe</a>
+        <a href="#services" class="mobile-link block px-4 py-3 text-forest font-medium rounded-xl hover:bg-forest/5 transition-colors">Dịch vụ Thi công</a>
+        <a href="#contact" class="mobile-link block px-4 py-3 text-forest font-medium rounded-xl hover:bg-forest/5 transition-colors">Liên hệ</a>
+        <div class="pt-3 px-4">
+          <a href="https://zalo.me" target="_blank" class="flex items-center justify-center gap-2 w-full bg-forest text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-forest-dark transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            Tư vấn ngay
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section id="hero" class="relative min-h-screen flex items-center overflow-hidden">
+    <div class="absolute inset-0 hero-bg" style="background-image: url('https://picsum.photos/seed/tuonggarden-hero/1920/1080.jpg');">
+      <div class="absolute inset-0 bg-gradient-to-r from-forest/85 via-forest/60 to-forest/30"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-forest/50 via-transparent to-transparent"></div>
+    </div>
+    <div class="absolute top-20 right-20 w-72 h-72 bg-lime/10 blob-shape blur-3xl"></div>
+    <div class="absolute bottom-20 left-10 w-96 h-96 bg-lime/5 blob-shape blur-3xl"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 md:pt-32 md:pb-24">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8">
+          <span class="w-2 h-2 bg-lime rounded-full animate-pulse"></span>
+          <span class="text-white/90 text-xs font-medium tracking-wide uppercase">Cây cảnh & Không gian xanh</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight mb-6">
+          TUONG CAFE <br>
+          <span class="text-lime">& GARDEN</span>
+          <span class="block text-2xl sm:text-3xl lg:text-4xl font-light mt-2 text-white/90">Nơi cây cảnh & cafe hòa quyện</span>
+        </h1>
+        <p class="text-base sm:text-lg text-white/80 leading-relaxed mb-10 max-w-lg">
+          Khám phá không gian cafe sân vườn rợp bóng cây xanh. Tận hưởng tách cafe thơm lừng giữa thiên nhiên thu nhỏ ngay giữa lòng thành phố.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#catalog" class="inline-flex items-center gap-2 bg-lime text-forest-dark px-8 py-3.5 rounded-full font-semibold hover:bg-lime/90 transition-all duration-300 shadow-lg shadow-lime/20 hover:shadow-lime/40">
+            <i data-lucide="search" class="w-5 h-5"></i>
+            Tìm hiểu ngay
+          </a>
+          <a href="#services" class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white border border-white/30 px-8 py-3.5 rounded-full font-medium hover:bg-white/20 transition-all duration-300">
+            <i data-lucide="ruler" class="w-5 h-5"></i>
+            Dịch vụ thi công
+          </a>
+        </div>
+        <div class="flex flex-wrap gap-8 mt-14 pt-8 border-t border-white/15">
+          <div>
+            <div class="text-3xl font-bold text-white">500+</div>
+            <div class="text-sm text-white/60 mt-1">Loài cây cảnh</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-white">50+</div>
+            <div class="text-sm text-white/60 mt-1">Dự án thi công</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-white">5 năm</div>
+            <div class="text-sm text-white/60 mt-1">Kinh nghiệm</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+      <span class="text-white/50 text-xs tracking-widest uppercase">Cuộn xuống</span>
+      <i data-lucide="chevron-down" class="w-5 h-5 text-white/50"></i>
+    </div>
+  </section>
+
+  <!-- ========== CORE FEATURES ========== -->
+  <section class="py-20 md:py-28 bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16 fade-up">
+        <span class="inline-block text-xs font-semibold tracking-widest uppercase text-moss bg-moss/10 px-4 py-1.5 rounded-full mb-4">Khám phá</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-medium text-forest tracking-tight leading-tight mb-4">Những gì chúng tôi <span class="text-moss">mang lại</span></h2>
+        <p class="text-terra-light text-base leading-relaxed">Không chỉ là cây cảnh, chúng tôi tạo nên không gian sống xanh mát cho bạn.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 fade-up">
+        <div class="feature-card bg-white rounded-2xl border border-forest/5 p-6 cursor-pointer group">
+          <div class="w-14 h-14 bg-forest/5 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-forest/10 transition-colors">
+            <i data-lucide="flower-2" class="w-7 h-7 text-forest"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-forest mb-2 tracking-tight">Khám Phá Cây Cảnh</h3>
+          <p class="text-sm text-terra-light leading-relaxed mb-4">Sen đá, xương rồng, cây để bàn... Hàng trăm loài cây được chăm sóc tận tình.</p>
+          <span class="inline-flex items-center gap-1 text-sm font-medium text-forest group-hover:text-moss transition-colors">
+            Xem kho cây <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+          </span>
+        </div>
+        <div id="decor" class="feature-card bg-white rounded-2xl border border-forest/5 p-6 cursor-pointer group">
+          <div class="w-14 h-14 bg-forest/5 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-forest/10 transition-colors">
+            <i data-lucide="coffee" class="w-7 h-7 text-forest"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-forest mb-2 tracking-tight">Decor Quán Cafe</h3>
+          <p class="text-sm text-terra-light leading-relaxed mb-4">Góc view đẹp, không gian xanh. Vừa nhâm nhi cafe, vừa ngắm cây mua cây.</p>
+          <span class="inline-flex items-center gap-1 text-sm font-medium text-forest group-hover:text-moss transition-colors">
+            Xem không gian <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+          </span>
+        </div>
+        <div class="feature-card bg-white rounded-2xl border border-forest/5 p-6 cursor-pointer group">
+          <div class="w-14 h-14 bg-forest/5 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-forest/10 transition-colors">
+            <i data-lucide="ruler" class="w-7 h-7 text-forest"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-forest mb-2 tracking-tight">Dịch Vụ Thi Công</h3>
+          <p class="text-sm text-terra-light leading-relaxed mb-4">Thiết kế, setup tiểu cảnh sân vườn, không gian xanh cho quán cafe, văn phòng.</p>
+          <span class="inline-flex items-center gap-1 text-sm font-medium text-forest group-hover:text-moss transition-colors">
+            Chi tiết dịch vụ <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+          </span>
+        </div>
+        <div class="feature-card bg-white rounded-2xl border border-forest/5 p-6 cursor-pointer group">
+          <div class="w-14 h-14 bg-forest/5 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-forest/10 transition-colors">
+            <i data-lucide="gift" class="w-7 h-7 text-forest"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-forest mb-2 tracking-tight">Combo Cây & Cafe</h3>
+          <p class="text-sm text-terra-light leading-relaxed mb-4">Gói trải nghiệm đặc biệt: thưởng thức cafe và chọn cho mình chậu cây ưng ý.</p>
+          <span class="inline-flex items-center gap-1 text-sm font-medium text-forest group-hover:text-moss transition-colors">
+            Xem combo <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DECOR CAFE ========== -->
+  <section class="py-20 md:py-28 bg-sand">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center fade-up">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-4">
+            <div class="rounded-2xl overflow-hidden shadow-lg">
+              <img src="https://picsum.photos/seed/cafe-decor1/400/500.jpg" alt="Decor quán" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-700">
+            </div>
+            <div class="rounded-2xl overflow-hidden shadow-lg">
+              <img src="https://picsum.photos/seed/cafe-decor2/400/350.jpg" alt="Góc xanh" class="w-full h-36 md:h-48 object-cover hover:scale-105 transition-transform duration-700">
+            </div>
+          </div>
+          <div class="space-y-4 pt-8">
+            <div class="rounded-2xl overflow-hidden shadow-lg">
+              <img src="https://picsum.photos/seed/cafe-decor3/400/350.jpg" alt="Ngoài trời" class="w-full h-36 md:h-48 object-cover hover:scale-105 transition-transform duration-700">
+            </div>
+            <div class="rounded-2xl overflow-hidden shadow-lg">
+              <img src="https://picsum.photos/seed/cafe-decor4/400/500.jpg" alt="Bàn ghế gỗ" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-700">
+            </div>
+          </div>
+        </div>
+        <div>
+          <span class="inline-block text-xs font-semibold tracking-widest uppercase text-moss bg-moss/10 px-4 py-1.5 rounded-full mb-4">Không gian</span>
+          <h2 class="text-3xl md:text-4xl font-medium text-forest tracking-tight leading-tight mb-6">
+            Decor Quán Cafe<br><span class="text-moss">Sân Vườn Thư Giãn</span>
+          </h2>
+          <p class="text-terra-light leading-relaxed mb-6">
+            TUONG CAFE & GARDEN không chỉ là quán cafe, mà là một không gian sống. Bàn ghế gỗ mộc mạc, ánh nắng xuyên qua tán lá, tiếng chim hót líu lo – tất cả tạo nên một trải nghiệm bình yên giữa lòng phố thị.
+          </p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 bg-lime/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3.5 h-3.5 text-forest"></i></div>
+              <span class="text-forest/80 text-sm">Không gian sân vườn rợp bóng cây xanh mát</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 bg-lime/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3.5 h-3.5 text-forest"></i></div>
+              <span class="text-forest/80 text-sm">Bàn ghế gỗ tự nhiên, mang cảm giác mộc mạc</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 bg-lime/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3.5 h-3.5 text-forest"></i></div>
+              <span class="text-forest/80 text-sm">Góc trưng bày cây cảnh – vừa ngắm vừa mua</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 bg-lime/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3.5 h-3.5 text-forest"></i></div>
+              <span class="text-forest/80 text-sm">Ly cafe handmade, hạt tuyển chọn từ vùng cao</span>
+            </li>
+          </ul>
+          <a href="#contact" class="inline-flex items-center gap-2 bg-forest text-white px-8 py-3.5 rounded-full font-medium hover:bg-forest-dark transition-colors duration-300 shadow-lg shadow-forest/20">
+            <i data-lucide="map-pin" class="w-5 h-5"></i>
+            Tìm đường đến quán
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CATALOG ========== -->
+  <section id="catalog" class="py-20 md:py-28 bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12 fade-up">
+        <span class="inline-block text-xs font-semibold tracking-widest uppercase text-moss bg-moss/10 px-4 py-1.5 rounded-full mb-4">Kho cây cảnh</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-medium text-forest tracking-tight leading-tight mb-4">Khám phá <span class="text-moss">cây cảnh</span></h2>
+        <p class="text-terra-light text-base leading-relaxed">Hàng trăm loài cây phong phú, được chăm sóc tận tâm. Chọn lọc theo nhu cầu của bạn.</p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-2 mb-12 fade-up" id="filterContainer">
+        <button class="filter-btn active px-5 py-2.5 rounded-full text-sm font-medium border border-forest/15 text-forest hover:bg-forest hover:text-white transition-all duration-300" data-filter="all">Tất cả</button>
+        <button class="filter-btn px-5 py-2.5 rounded-full text-sm font-medium border border-forest/15 text-forest hover:bg-forest hover:text-white transition-all duration-300" data-filter="phong-thuy">Cây phong thủy</button>
+        <button class="filter-btn px-5 py-2.5 rounded-full text-sm font-medium border border-forest/15 text-forest hover:bg-forest hover:text-white transition-all duration-300" data-filter="de-ban">Cây để bàn</button>
+        <button class="filter-btn px-5 py-2.5 rounded-full text-sm font-medium border border-forest/15 text-forest hover:bg-forest hover:text-white transition-all duration-300" data-filter="sen-da">Sen đá</button>
+        <button class="filter-btn px-5 py-2.5 rounded-full text-sm font-medium border border-forest/15 text-forest hover:bg-forest hover:text-white transition-all duration-300" data-filter="dai-sanh">Cây đại sảnh</button>
+      </div>
+
+      <!-- Grid cây cảnh sẽ được render bởi JS từ data.js -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="plantGrid"></div>
+    </div>
+  </section>
+
+  <!-- ========== PLANT DETAIL MODAL ========== -->
+  <div id="detailModal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeDetail()"></div>
+    <div class="relative z-10 flex items-start justify-center min-h-screen p-4 pt-20 md:pt-24">
+      <div class="bg-cream rounded-3xl shadow-2xl max-w-4xl w-full max-h-[85vh] overflow-y-auto">
+        <button onclick="closeDetail()" class="absolute top-6 right-6 w-10 h-10 bg-forest/10 rounded-full flex items-center justify-center hover:bg-forest/20 transition-colors z-20">
+          <i data-lucide="x" class="w-5 h-5 text-forest"></i>
+        </button>
+        <div class="grid grid-cols-1 md:grid-cols-2">
+          <div class="p-4 md:p-6">
+            <div class="relative rounded-2xl overflow-hidden bg-sand aspect-square">
+              <img id="detailMainImg" src="" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="grid grid-cols-4 gap-2 mt-3" id="detailThumbs"></div>
+          </div>
+          <div class="p-6 md:p-8 flex flex-col">
+            <span id="detailBadge" class="inline-block self-start text-xs font-medium px-3 py-1 rounded-full mb-4"></span>
+            <h2 id="detailName" class="text-2xl font-semibold text-forest tracking-tight mb-1"></h2>
+            <p id="detailSciName" class="text-sm text-terra-light italic mb-6"></p>
+            <div class="space-y-4 mb-6">
+              <div class="flex items-center gap-3 p-3 bg-sand/50 rounded-xl">
+                <i data-lucide="sun" class="w-5 h-5 text-forest flex-shrink-0"></i>
+                <div><span class="text-xs text-terra-light block">Ánh sáng</span><span id="detailLight" class="text-sm font-medium text-forest"></span></div>
+              </div>
+              <div class="flex items-center gap-3 p-3 bg-sand/50 rounded-xl">
+                <i data-lucide="droplets" class="w-5 h-5 text-forest flex-shrink-0"></i>
+                <div><span class="text-xs text-terra-light block">Tưới nước</span><span id="detailWater" class="text-sm font-medium text-forest"></span></div>
+              </div>
+              <div class="flex items-center gap-3 p-3 bg-sand/50 rounded-xl">
+                <i data-lucide="sparkles" class="w-5 h-5 text-forest flex-shrink-0"></i>
+                <div><span class="text-xs text-terra-light block">Ý nghĩa phong thủy</span><span id="detailFengShui" class="text-sm font-medium text-forest"></span></div>
+              </div>
+              <div class="flex items-center gap-3 p-3 bg-sand/50 rounded-xl">
+                <i data-lucide="home" class="w-5 h-5 text-forest flex-shrink-0"></i>
+                <div><span class="text-xs text-terra-light block">Vị trí phù hợp</span><span id="detailPosition" class="text-sm font-medium text-forest"></span></div>
+              </div>
+            </div>
+            <div class="mt-auto space-y-3">
+              <p id="detailDesc" class="text-sm text-terra-light leading-relaxed"></p>
+              <a href="https://zalo.me" target="_blank" class="flex items-center justify-center gap-2 w-full bg-forest text-white px-6 py-3.5 rounded-full font-medium hover:bg-forest-dark transition-colors duration-300 shadow-lg shadow-forest/20">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12.003 2C6.004 2 3 6.078 3 9.5c0 2.13 1.14 4.556 2.823 5.436-.258.963-.785 2.877-.855 3.12-.096.337.117.473.37.337.268-.144 3.17-2.044 4.025-2.603.84.175 1.734.27 2.64.27 6 0 9.004-4.078 9.004-7.5S18.003 2 12.003 2z"/></svg>
+                Nhận báo giá qua Zalo
+              </a>
+              <a href="tel:0901234567" class="flex items-center justify-center gap-2 w-full bg-lime/20 text-forest px-6 py-3 rounded-full font-medium hover:bg-lime/30 transition-colors duration-300">
+                <i data-lucide="phone" class="w-4 h-4"></i>
+                Gọi Hotline: 0901 234 567
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== LIGHTBOX ========== -->
+  <div id="lightbox" class="lightbox-overlay fixed inset-0 z-[110] bg-black/90 flex items-center justify-center p-4">
+    <button onclick="closeLightbox()" class="absolute top-6 right-6 w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+      <i data-lucide="x" class="w-5 h-5 text-white"></i>
+    </button>
+    <button onclick="lightboxPrev()" class="absolute left-4 md:left-8 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+      <i data-lucide="chevron-left" class="w-6 h-6 text-white"></i>
+    </button>
+    <button onclick="lightboxNext()" class="absolute right-4 md:right-8 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+      <i data-lucide="chevron-right" class="w-6 h-6 text-white"></i>
+    </button>
+    <img id="lightboxImg" src="" alt="" class="max-w-full max-h-[85vh] object-contain rounded-xl">
+  </div>
+
+  <!-- ========== SERVICES TIMELINE ========== -->
+  <section id="services" class="py-20 md:py-28 bg-sand relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-lime/5 blob-shape blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-forest/5 blob-shape blur-3xl"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16 fade-up">
+        <span class="inline-block text-xs font-semibold tracking-widest uppercase text-moss bg-moss/10 px-4 py-1.5 rounded-full mb-4">Quy trình</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-medium text-forest tracking-tight leading-tight mb-4">Dịch vụ thi công <span class="text-moss">trọn gói</span></h2>
+        <p class="text-terra-light text-base leading-relaxed">Từ ý tưởng đến bàn giao, chúng tôi đồng hành cùng bạn từng bước.</p>
+      </div>
+      <div class="relative max-w-4xl mx-auto">
+        <div class="timeline-line hidden md:block"></div>
+        <div class="timeline-line md:hidden"></div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6 relative z-10">
+          <div class="fade-up text-center">
+            <div class="relative inline-flex items-center justify-center w-16 h-16 bg-forest text-white rounded-2xl shadow-lg shadow-forest/20 mb-5 mx-auto">
+              <i data-lucide="lightbulb" class="w-7 h-7"></i>
+              <span class="absolute -top-2 -right-2 w-7 h-7 bg-lime text-forest-dark text-xs font-bold rounded-full flex items-center justify-center">1</span>
+            </div>
+            <h3 class="text-base font-semibold text-forest mb-2">Idea</h3>
+            <p class="text-sm text-terra-light leading-relaxed">Khảo sát hiện trạng, lắng nghe nhu cầu và tư vấn ý tưởng thiết kế ban đầu.</p>
+          </div>
+          <div class="fade-up text-center" style="transition-delay: 0.1s">
+            <div class="relative inline-flex items-center justify-center w-16 h-16 bg-forest text-white rounded-2xl shadow-lg shadow-forest/20 mb-5 mx-auto">
+              <i data-lucide="scan" class="w-7 h-7"></i>
+              <span class="absolute -top-2 -right-2 w-7 h-7 bg-lime text-forest-dark text-xs font-bold rounded-full flex items-center justify-center">2</span>
+            </div>
+            <h3 class="text-base font-semibold text-forest mb-2">Survey</h3>
+            <p class="text-sm text-terra-light leading-relaxed">Lên concept 2D-3D chi tiết, duyệt bản vẽ với khách hàng trước khi thi công.</p>
+          </div>
+          <div class="fade-up text-center" style="transition-delay: 0.2s">
+            <div class="relative inline-flex items-center justify-center w-16 h-16 bg-forest text-white rounded-2xl shadow-lg shadow-forest/20 mb-5 mx-auto">
+              <i data-lucide="hammer" class="w-7 h-7"></i>
+              <span class="absolute -top-2 -right-2 w-7 h-7 bg-lime text-forest-dark text-xs font-bold rounded-full flex items-center justify-center">3</span>
+            </div>
+            <h3 class="text-base font-semibold text-forest mb-2">Execute</h3>
+            <p class="text-sm text-terra-light leading-relaxed">Thi công trọn gói: đất, cây, chậu, đá, đèn, hệ thống tưới tự động.</p>
+          </div>
+          <div class="fade-up text-center" style="transition-delay: 0.3s">
+            <div class="relative inline-flex items-center justify-center w-16 h-16 bg-forest text-white rounded-2xl shadow-lg shadow-forest/20 mb-5 mx-auto">
+              <i data-lucide="heart-handshake" class="w-7 h-7"></i>
+              <span class="absolute -top-2 -right-2 w-7 h-7 bg-lime text-forest-dark text-xs font-bold rounded-full flex items-center justify-center">4</span>
+            </div>
+            <h3 class="text-base font-semibold text-forest mb-2">Maintain</h3>
+            <p class="text-sm text-terra-light leading-relaxed">Bàn giao công trình, hướng dẫn chăm sóc và gói bảo dưỡng cây định kỳ.</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-14 fade-up">
+        <a href="https://zalo.me" target="_blank" class="inline-flex items-center gap-2 bg-forest text-white px-8 py-3.5 rounded-full font-medium hover:bg-forest-dark transition-colors duration-300 shadow-lg shadow-forest/20">
+          <i data-lucide="file-text" class="w-5 h-5"></i>
+          Nhận báo giá thi công
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== INSPIRATIONAL BANNER ========== -->
+  <section class="relative py-20 md:py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-forest"></div>
+    <div class="absolute inset-0" style="background-image: url('https://picsum.photos/seed/green-leaf-pattern/1920/600.jpg'); background-size: cover; background-position: center; opacity: 0.15;"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-forest/90 via-forest/70 to-forest/90"></div>
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-up">
+      <i data-lucide="quote" class="w-12 h-12 text-lime/40 mx-auto mb-6"></i>
+      <blockquote class="text-2xl md:text-3xl lg:text-4xl font-light text-white leading-relaxed tracking-tight mb-6">
+        "Sân vườn không chỉ là cây...<br>
+        Là <span class="text-lime font-medium">KHÔNG GIAN</span>, <span class="text-lime font-medium">CẢM XỨNG</span><br>
+        và <span class="text-lime font-medium">TRẢI NGHIỆM</span>."
+      </blockquote>
+      <div class="w-16 h-0.5 bg-lime/50 mx-auto mb-4"></div>
+      <p class="text-white/60 text-sm tracking-wide">— TUONG CAFE & GARDEN —</p>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer id="contact" class="py-20 md:py-28 bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+        <div class="fade-up">
+          <span class="inline-block text-xs font-semibold tracking-widest uppercase text-moss bg-moss/10 px-4 py-1.5 rounded-full mb-4">Liên hệ</span>
+          <h2 class="text-3xl md:text-4xl font-medium text-forest tracking-tight leading-tight mb-6">
+            Ghé thăm <span class="text-moss">TUONG CAFE & GARDEN</span>
+          </h2>
+          <p class="text-terra-light leading-relaxed mb-8">
+            Mời bạn đến thưởng thức cafe và ngắm cây tại không gian vườn của chúng tôi. Đội ngũ luôn sẵn sàng tư vấn cây cảnh và dịch vụ thi công.
+          </p>
+          <div class="space-y-5">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-forest/5 rounded-2xl flex items-center justify-center flex-shrink-0"><i data-lucide="map-pin" class="w-5 h-5 text-forest"></i></div>
+              <div><h4 class="text-sm font-semibold text-forest mb-0.5">Địa chỉ</h4><p class="text-sm text-terra-light">123 Đường Số X, Phường Y, Quận Z, TP. HCM</p></div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-forest/5 rounded-2xl flex items-center justify-center flex-shrink-0"><i data-lucide="phone" class="w-5 h-5 text-forest"></i></div>
+              <div><h4 class="text-sm font-semibold text-forest mb-0.5">Hotline / Zalo</h4><a href="tel:0901234567" class="text-sm text-terra hover:text-forest transition-colors">0901 234 567</a></div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-forest/5 rounded-2xl flex items-center justify-center flex-shrink-0"><i data-lucide="clock" class="w-5 h-5 text-forest"></i></div>
+              <div><h4 class="text-sm font-semibold text-forest mb-0.5">Giờ mở cửa</h4><p class="text-sm text-terra-light">7:00 – 21:00 (Thứ 2 – Chủ nhật)</p></div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-forest/5 rounded-2xl flex items-center justify-center flex-shrink-0"><i data-lucide="facebook" class="w-5 h-5 text-forest"></i></div>
+              <div><h4 class="text-sm font-semibold text-forest mb-0.5">Fanpage</h4><a href="#" class="text-sm text-terra hover:text-forest transition-colors">fb.com/tuongcafeandgarden</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="fade-up">
+          <div class="rounded-2xl overflow-hidden shadow-xl border border-forest/10 h-full min-h-[400px]">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.494668100759!2d106.66624231533418!3d10.77163639232668!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752edc63289313%3A0x4c56e56c9e81ab64!2zQ2jDoG0gU-G7kyDEkOG7mWkgUXXhuq1u!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s" width="100%" height="100%" style="border:0; min-height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="mt-16 pt-8 border-t border-forest/10 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 bg-forest rounded-lg flex items-center justify-center"><i data-lucide="leaf" class="w-4 h-4 text-lime"></i></div>
+          <span class="text-sm font-semibold text-forest">TUONG CAFE & GARDEN</span>
+        </div>
+        <p class="text-xs text-terra-light">© 2025 Tuong Cafe & Garden. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== FLOATING BUTTONS ========== -->
+  <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+    <a href="https://zalo.me" target="_blank" class="float-btn relative w-14 h-14 bg-[#0068FF] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300" title="Chat Zalo">
+      <svg class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M12.003 2C6.004 2 3 6.078 3 9.5c0 2.13 1.14 4.556 2.823 5.436-.258.963-.785 2.877-.855 3.12-.096.337.117.473.37.337.268-.144 3.17-2.044 4.025-2.603.84.175 1.734.27 2.64.27 6 0 9.004-4.078 9.004-7.5S18.003 2 12.003 2z"/></svg>
+    </a>
+    <a href="tel:0901234567" class="float-btn relative w-14 h-14 bg-forest rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300" title="Gọi ngay">
+      <i data-lucide="phone" class="w-6 h-6 text-white"></i>
+    </a>
+  </div>
+
+  <!-- ===== JS FILES ===== -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/catalog.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

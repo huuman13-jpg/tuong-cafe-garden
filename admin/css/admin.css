@@ -1,0 +1,359 @@
+/* ===========================================================
+   ADMIN CSS – TUONG CAFE & GARDEN
+   Tất cả style riêng cho trang quản trị
+   =========================================================== */
+
+/* ---------- Base ---------- */
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #F5F5F0;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #aaa; }
+
+/* ---------- Login ---------- */
+.login-bg {
+  background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 50%, #8BC34A 100%);
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  transition: transform 0.3s ease, width 0.3s ease;
+}
+
+.sidebar-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  transition: opacity 0.3s ease;
+}
+
+.nav-item {
+  transition: all 0.2s ease;
+  border-radius: 12px;
+}
+
+.nav-item:hover {
+  background: rgba(27, 94, 32, 0.06);
+}
+
+.nav-item.active {
+  background: #1B5E20;
+  color: white;
+}
+
+.nav-item.active i {
+  color: white;
+}
+
+/* ---------- Pages ---------- */
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+  animation: pageFadeIn 0.3s ease;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Table ---------- */
+.table-row {
+  transition: background 0.15s ease;
+}
+
+.table-row:hover {
+  background: rgba(139, 195, 74, 0.04);
+}
+
+/* ---------- Status Badges ---------- */
+.status-còn-hàng {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-hết-hàng {
+  background: #fef9c3;
+  color: #854d0e;
+}
+
+.status-ẩn {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+/* ---------- Toggle Switch ---------- */
+.toggle-switch {
+  width: 44px;
+  height: 24px;
+  background: #d1d5db;
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  flex-shrink: 0;
+}
+
+.toggle-switch.active {
+  background: #1B5E20;
+}
+
+.toggle-switch::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.toggle-switch.active::after {
+  transform: translateX(20px);
+}
+
+/* ---------- Quick Edit ---------- */
+.quick-edit-input {
+  background: #FEFDF1;
+  border: 2px solid #8BC34A;
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  width: 100%;
+  outline: none;
+}
+
+/* ---------- Upload Zone ---------- */
+.upload-zone {
+  border: 2px dashed #ccc;
+  border-radius: 16px;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.upload-zone.dragover {
+  border-color: #8BC34A;
+  background: rgba(139, 195, 74, 0.05);
+}
+
+/* ---------- Image Drag & Drop ---------- */
+.img-item {
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: grab;
+}
+
+.img-item:active {
+  cursor: grabbing;
+}
+
+.img-item.dragging {
+  opacity: 0.4;
+  transform: scale(0.95);
+}
+
+.img-item.drag-over {
+  border-color: #8BC34A !important;
+}
+
+/* ---------- Rich Text Editor ---------- */
+.editor-toolbar {
+  /* thêm class cho toolbar */
+}
+
+.editor-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #1B5E20;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.editor-btn:hover {
+  background: rgba(27, 94, 32, 0.1);
+}
+
+.editor-sep {
+  width: 1px;
+  height: 20px;
+  background: rgba(27, 94, 32, 0.1);
+  margin: 0 4px;
+}
+
+.editor-color {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.editor-color::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.editor-color::-webkit-color-swatch {
+  border: 1px solid rgba(27, 94, 32, 0.15);
+  border-radius: 6px;
+}
+
+.editor-content {
+  min-height: 160px;
+  outline: none;
+  line-height: 1.7;
+}
+
+.editor-content:empty::before {
+  content: attr(data-placeholder);
+  color: #a1887f;
+  pointer-events: none;
+}
+
+.editor-content ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+
+.editor-content ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+}
+
+/* ---------- Status Radio Labels ---------- */
+.status-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: #FEFDF1;
+  border: 2px solid rgba(27, 94, 32, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1B5E20;
+}
+
+.status-radio-label:hover {
+  border-color: #1B5E20;
+}
+
+.status-radio-label:has(:checked) {
+  border-color: #1B5E20;
+  background: rgba(27, 94, 32, 0.05);
+}
+
+.status-radio-label.status-radio--yellow:hover {
+  border-color: #eab308;
+}
+
+.status-radio-label.status-radio--yellow:has(:checked) {
+  border-color: #eab308;
+  background: #fefce8;
+}
+
+.status-radio-label.status-radio--gray:hover {
+  border-color: #9ca3af;
+}
+
+.status-radio-label.status-radio--gray:has(:checked) {
+  border-color: #9ca3af;
+  background: #f9fafb;
+}
+
+/* ---------- Settings Input ---------- */
+.setting-input {
+  width: 100%;
+  padding: 10px 16px;
+  background: #FEFDF1;
+  border: 1px solid rgba(27, 94, 32, 0.1);
+  border-radius: 12px;
+  font-size: 14px;
+  color: #1B5E20;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.setting-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.25);
+  border-color: #8BC34A;
+}
+
+/* ---------- Toast ---------- */
+.toast {
+  animation: toastIn 0.4s ease, toastOut 0.4s ease 2.6s forwards;
+}
+
+@keyframes toastIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toastOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 640px) {
+  .editor-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .editor-sep {
+    height: 16px;
+    margin: 0 2px;
+  }
+
+  .editor-color {
+    width: 28px;
+    height: 28px;
+  }
+
+  .editor-content {
+    min-height: 120px;
+  }
+}
